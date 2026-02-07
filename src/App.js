@@ -1597,18 +1597,66 @@ export default function App() {
                       className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
                     />
                   </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Hours Available per Week *</label>
+                    <select 
+                      required
+                      className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
+                    >
+                      <option value="">Select hours</option>
+                      <option value="5-10">5-10 hours/week</option>
+                      <option value="10-20">10-20 hours/week</option>
+                      <option value="20-30">20-30 hours/week</option>
+                      <option value="30-40">30-40 hours/week</option>
+                      <option value="40+">40+ hours/week (Full-time)</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
-              {/* About Yourself */}
+              {/* Demo Video Upload */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Tell Us About Yourself *</label>
-                <textarea
-                  rows="4"
-                  placeholder="Share your teaching philosophy, experience, and what makes you a great tutor..."
-                  required
-                  className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none resize-none"
-                ></textarea>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Demo Video</h3>
+                <div className="space-y-3">
+                  <label className="block text-sm font-semibold text-gray-700">
+                    Upload a Demo Video (Teaching a Concept) *
+                  </label>
+                  <p className="text-sm text-gray-500 mb-3">
+                    Record a 2-5 minute video explaining a concept from your subject. This helps students see your teaching style.
+                  </p>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-teal-500 transition-colors">
+                    <input
+                      type="file"
+                      accept="video/*"
+                      required
+                      className="hidden"
+                      id="video-upload"
+                    />
+                    <label 
+                      htmlFor="video-upload" 
+                      className="cursor-pointer flex flex-col items-center"
+                    >
+                      <div className="text-5xl mb-3">🎥</div>
+                      <span className="text-teal-600 font-semibold hover:text-teal-700">
+                        Click to upload video
+                      </span>
+                      <span className="text-sm text-gray-500 mt-2">
+                        MP4, MOV, or AVI (Max 100MB)
+                      </span>
+                    </label>
+                  </div>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <p className="text-sm text-blue-800">
+                      <strong>💡 Pro Tips:</strong>
+                    </p>
+                    <ul className="text-sm text-blue-700 mt-2 space-y-1 ml-4">
+                      <li>• Good lighting and clear audio</li>
+                      <li>• Explain a concept step-by-step</li>
+                      <li>• Use whiteboard or screen sharing</li>
+                      <li>• Be enthusiastic and engaging</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
               {/* Terms */}
