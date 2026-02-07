@@ -4,6 +4,7 @@ import './index.css';
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedTeacher, setSelectedTeacher] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     curriculum: '',
     grade: '',
@@ -33,7 +34,14 @@ export default function App() {
   const handleBookTeacher = (teacher) => {
     console.log('Booking teacher:', teacher);
     setSelectedTeacher(teacher);
-    setCurrentPage('payment');
+    setIsLoading(true);
+    setCurrentPage('loading');
+    
+    // Wait 10 seconds then show payment page
+    setTimeout(() => {
+      setIsLoading(false);
+      setCurrentPage('payment');
+    }, 10000);
   };
 
   // Pseudo teacher data
@@ -99,6 +107,34 @@ export default function App() {
       image: "👨‍💼"
     }
   ];
+
+  // Loading/Waiting Page
+  if (currentPage === 'loading') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="mb-8">
+            <div className="w-24 h-24 border-8 border-teal-200 border-t-teal-600 rounded-full animate-spin mx-auto"></div>
+          </div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Processing Your Booking...</h2>
+          <p className="text-gray-600 mb-6">Please wait while we prepare your session with {selectedTeacher?.name}</p>
+          <div className="max-w-md mx-auto bg-white rounded-xl p-6 shadow-lg">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="text-5xl">{selectedTeacher?.image}</div>
+              <div className="text-left">
+                <h3 className="text-xl font-bold text-gray-900">{selectedTeacher?.name}</h3>
+                <p className="text-gray-600">{selectedTeacher?.subject}</p>
+                <p className="text-teal-600 font-semibold">₹{selectedTeacher?.hourlyRate}/hour</p>
+              </div>
+            </div>
+            <div className="text-sm text-gray-500">
+              Redirecting to payment in a moment...
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Payment Gateway Page
   if (currentPage === 'payment') {
