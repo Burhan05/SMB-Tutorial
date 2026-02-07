@@ -4,6 +4,7 @@ import './index.css';
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedTeacher, setSelectedTeacher] = useState(null);
+  const [countdown, setCountdown] = useState(15);
   const [formData, setFormData] = useState({
     curriculum: '',
     grade: '',
@@ -33,7 +34,31 @@ export default function App() {
   const handleBookTeacher = (teacher) => {
     console.log('Booking teacher:', teacher);
     setSelectedTeacher(teacher);
-    setCurrentPage('payment');
+    setCountdown(15); // Reset countdown to 15 seconds
+    setCurrentPage('waiting');
+    
+    // Countdown timer
+    let timeLeft = 15;
+    const countdownInterval = setInterval(() => {
+      timeLeft--;
+      setCountdown(timeLeft);
+      
+      if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        // Teacher didn't accept in time
+        setCurrentPage('timeout');
+      }
+    }, 1000);
+    
+    // Simulate teacher accepting (for demo - in real app, this would come from backend)
+    // Random acceptance between 3-12 seconds
+    const acceptanceTime = Math.floor(Math.random() * 9000) + 3000;
+    setTimeout(() => {
+      if (timeLeft > 0) {
+        clearInterval(countdownInterval);
+        setCurrentPage('payment');
+      }
+    }, acceptanceTime);
   };
 
   // Pseudo teacher data
@@ -99,6 +124,134 @@ export default function App() {
       image: "👨‍💼"
     }
   ];
+
+  // Waiting for Teacher Acceptance Page
+  if (currentPage === 'waiting') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 flex items-center justify-center p-8">
+        <div className="max-w-2xl w-full">
+          <div className="text-center mb-8">
+            <div className="mb-6">
+              <div className="w-32 h-32 bg-white rounded-full shadow-lg mx-auto flex items-center justify-center mb-4 animate-pulse">
+                <div className="text-7xl">{selectedTeacher?.image}</div>
+              </div>
+              <div className="text-6xl mb-4">⏳</div>
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Waiting for Teacher Acceptance</h2>
+            <p className="text-xl text-gray-600 mb-2">We've sent your request to {selectedTeacher?.name}</p>
+            <p className="text-gray-500">They have 15 seconds to accept your booking request</p>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-xl border-2 border-teal-100 mb-6">
+            {/* Countdown Timer */}
+            <div className="text-center mb-6">
+              <div className="inline-block">
+                <div className="text-7xl font-bold text-teal-600 mb-2">{countdown}</div>
+                <div className="text-sm text-gray-500 uppercase tracking-wide">Seconds Remaining</div>
+              </div>
+            </div>
+
+            {/* Progress Bar */}
+            <div className="w-full bg-gray-200 rounded-full h-4 mb-6">
+              <div 
+                className="bg-gradient-to-r from-teal-500 to-cyan-600 h-4 rounded-full transition-all duration-1000"
+                style={{ width: `${(countdown / 15) * 100}%` }}
+              ></div>
+            </div>
+
+            {/* Teacher Info */}
+            <div className="border-t pt-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Request Details:</h3>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <span className="text-gray-500">Teacher:</span>
+                  <p className="font-semibold text-gray-900">{selectedTeacher?.name}</p>
+                </div>
+                <div>
+                  <span className="text-gray-500">Subject:</span>
+                  <p className="font-semibold text-gray-900">{selectedTeacher?.subject}</p>
+                </div>
+                <div>
+                  <span className="text-gray-500">Experience:</span>
+                  <p className="font-semibold text-gray-900">{selectedTeacher?.experience}</p>
+                </div>
+                <div>
+                  <span className="text-gray-500">Rate:</span>
+                  <p className="font-semibold text-teal-600">₹{selectedTeacher?.hourlyRate}/hour</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Status Message */}
+            <div className="mt-6 bg-teal-50 border border-teal-200 rounded-lg p-4">
+              <div className="flex items-center gap-3">
+                <div className="animate-spin">
+                  <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                </div>
+                <p className="text-sm text-teal-800">
+                  <strong>Teacher is reviewing your request...</strong> You'll be redirected automatically once they accept.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Cancel Option */}
+          <div className="text-center">
+            <button
+              onClick={() => setCurrentPage('teachers')}
+              className="text-gray-500 hover:text-gray-700 text-sm"
+            >
+              Cancel Request and Go Back
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Timeout Page (Teacher didn't accept in time)
+  if (currentPage === 'timeout') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 flex items-center justify-center p-8">
+        <div className="max-w-xl w-full text-center">
+          <div className="bg-white rounded-2xl p-12 shadow-xl border-2 border-red-100">
+            <div className="text-8xl mb-6">⏰</div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Teacher Unavailable</h2>
+            <p className="text-lg text-gray-600 mb-6">
+              {selectedTeacher?.name} didn't respond in time. They might be busy with another session.
+            </p>
+            
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-8">
+              <p className="text-sm text-yellow-800">
+                <strong>Don't worry!</strong> You can try booking another teacher or try again later.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <button
+                onClick={() => setCurrentPage('teachers')}
+                className="bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-teal-600 hover:to-cyan-700 transition-all"
+              >
+                Browse Other Teachers
+              </button>
+              <button
+                onClick={() => {
+                  setCountdown(15);
+                  handleBookTeacher(selectedTeacher);
+                }}
+                className="border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-xl font-semibold hover:bg-teal-50 transition-all"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Payment Gateway Page
   if (currentPage === 'payment') {
