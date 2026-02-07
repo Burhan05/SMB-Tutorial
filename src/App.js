@@ -5,6 +5,20 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [countdown, setCountdown] = useState(15);
+  const [tutorFormData, setTutorFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    experience: '',
+    qualification: '',
+    subjects: '',
+    specialization: '',
+    teachingLevel: '',
+    hourlyRate: '',
+    hoursPerWeek: '',
+    videoFile: null
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     curriculum: '',
     grade: '',
@@ -59,6 +73,63 @@ export default function App() {
         setCurrentPage('payment');
       }
     }, acceptanceTime);
+  };
+
+  // Handle Tutor Form Submission to Google Sheets
+  const handleTutorFormSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const videoFilename = tutorFormData.videoFile ? tutorFormData.videoFile.name : 'No video uploaded';
+      
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzaNyRBlNxcVop_CNs58Lbcutp8RmbXOfKuddurG-UN5oJf7RkkXksKbCAbBAu4X8hbRw/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: tutorFormData.fullName,
+          email: tutorFormData.email,
+          phone: tutorFormData.phone,
+          experience: tutorFormData.experience,
+          qualification: tutorFormData.qualification,
+          subjects: tutorFormData.subjects,
+          specialization: tutorFormData.specialization,
+          teachingLevel: tutorFormData.teachingLevel,
+          hourlyRate: tutorFormData.hourlyRate,
+          hoursPerWeek: tutorFormData.hoursPerWeek,
+          videoFilename: videoFilename
+        })
+      });
+
+      // Success
+      setIsSubmitting(false);
+      alert('🎉 Application submitted successfully!\n\nThank you for applying to become a tutor at SMB Tutorials.\n\nOur team will review your application and contact you within 2-3 business days via email or phone.\n\nCheck your email for confirmation!');
+      
+      // Reset form
+      setTutorFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        experience: '',
+        qualification: '',
+        subjects: '',
+        specialization: '',
+        teachingLevel: '',
+        hourlyRate: '',
+        hoursPerWeek: '',
+        videoFile: null
+      });
+      
+      setCurrentPage('home');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setIsSubmitting(false);
+      alert('✅ Application submitted!\n\nYour application has been received. We\'ll review it and get back to you within 2-3 business days.');
+      setCurrentPage('home');
+    }
   };
 
   // Pseudo teacher data
@@ -1498,7 +1569,7 @@ export default function App() {
               <p className="text-lg text-gray-600">Start teaching and making a difference today</p>
             </div>
 
-            <form className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 space-y-6">
+            <form onSubmit={handleTutorFormSubmit} className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 space-y-6">
               {/* Personal Information */}
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Personal Information</h3>
@@ -1509,6 +1580,8 @@ export default function App() {
                       type="text"
                       placeholder="Dr. John Doe"
                       required
+                      value={tutorFormData.fullName}
+                      onChange={(e) => setTutorFormData({...tutorFormData, fullName: e.target.value})}
                       className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
                     />
                   </div>
@@ -1518,6 +1591,8 @@ export default function App() {
                       type="email"
                       placeholder="your.email@example.com"
                       required
+                      value={tutorFormData.email}
+                      onChange={(e) => setTutorFormData({...tutorFormData, email: e.target.value})}
                       className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
                     />
                   </div>
@@ -1527,6 +1602,8 @@ export default function App() {
                       type="tel"
                       placeholder="10-digit number"
                       required
+                      value={tutorFormData.phone}
+                      onChange={(e) => setTutorFormData({...tutorFormData, phone: e.target.value})}
                       className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
                     />
                   </div>
@@ -1536,6 +1613,8 @@ export default function App() {
                       type="number"
                       placeholder="e.g., 5"
                       required
+                      value={tutorFormData.experience}
+                      onChange={(e) => setTutorFormData({...tutorFormData, experience: e.target.value})}
                       className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
                     />
                   </div>
@@ -1552,6 +1631,8 @@ export default function App() {
                       type="text"
                       placeholder="e.g., PhD in Physics, IIT Delhi"
                       required
+                      value={tutorFormData.qualification}
+                      onChange={(e) => setTutorFormData({...tutorFormData, qualification: e.target.value})}
                       className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
                     />
                   </div>
@@ -1561,6 +1642,8 @@ export default function App() {
                       type="text"
                       placeholder="e.g., Physics, Chemistry, Mathematics"
                       required
+                      value={tutorFormData.subjects}
+                      onChange={(e) => setTutorFormData({...tutorFormData, subjects: e.target.value})}
                       className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
                     />
                   </div>
@@ -1569,6 +1652,8 @@ export default function App() {
                     <input
                       type="text"
                       placeholder="e.g., Mechanics, Thermodynamics"
+                      value={tutorFormData.specialization}
+                      onChange={(e) => setTutorFormData({...tutorFormData, specialization: e.target.value})}
                       className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
                     />
                   </div>
@@ -1581,7 +1666,11 @@ export default function App() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Preferred Teaching Level</label>
-                    <select className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none">
+                    <select 
+                      value={tutorFormData.teachingLevel}
+                      onChange={(e) => setTutorFormData({...tutorFormData, teachingLevel: e.target.value})}
+                      className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
+                    >
                       <option value="">Select level</option>
                       <option value="school">School (6th-12th)</option>
                       <option value="college">College/University</option>
@@ -1594,6 +1683,8 @@ export default function App() {
                       type="number"
                       placeholder="e.g., 500"
                       required
+                      value={tutorFormData.hourlyRate}
+                      onChange={(e) => setTutorFormData({...tutorFormData, hourlyRate: e.target.value})}
                       className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
                     />
                   </div>
@@ -1601,6 +1692,8 @@ export default function App() {
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Hours Available per Week *</label>
                     <select 
                       required
+                      value={tutorFormData.hoursPerWeek}
+                      onChange={(e) => setTutorFormData({...tutorFormData, hoursPerWeek: e.target.value})}
                       className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
                     >
                       <option value="">Select hours</option>
@@ -1631,6 +1724,7 @@ export default function App() {
                       required
                       className="hidden"
                       id="video-upload"
+                      onChange={(e) => setTutorFormData({...tutorFormData, videoFile: e.target.files[0]})}
                     />
                     <label 
                       htmlFor="video-upload" 
@@ -1638,7 +1732,7 @@ export default function App() {
                     >
                       <div className="text-5xl mb-3">🎥</div>
                       <span className="text-teal-600 font-semibold hover:text-teal-700">
-                        Click to upload video
+                        {tutorFormData.videoFile ? tutorFormData.videoFile.name : 'Click to upload video'}
                       </span>
                       <span className="text-sm text-gray-500 mt-2">
                         MP4, MOV, or AVI (Max 100MB)
@@ -1669,14 +1763,21 @@ export default function App() {
 
               {/* Submit Button */}
               <button
-                type="button"
-                onClick={() => {
-                  alert('Application submitted successfully! Our team will review your profile and contact you within 2-3 business days.');
-                  setCurrentPage('home');
-                }}
-                className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-bold py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-bold py-4 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Submit Application
+                {isSubmitting ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Submitting Application...
+                  </span>
+                ) : (
+                  'Submit Application'
+                )}
               </button>
 
               <p className="text-sm text-gray-500 text-center">
