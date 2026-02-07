@@ -4,7 +4,6 @@ import './index.css';
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [selectedTeacher, setSelectedTeacher] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     curriculum: '',
     grade: '',
@@ -34,12 +33,10 @@ export default function App() {
   const handleBookTeacher = (teacher) => {
     console.log('Booking teacher:', teacher);
     setSelectedTeacher(teacher);
-    setIsLoading(true);
     setCurrentPage('loading');
     
     // Wait 10 seconds then show payment page
     setTimeout(() => {
-      setIsLoading(false);
       setCurrentPage('payment');
     }, 10000);
   };
