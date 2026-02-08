@@ -2288,21 +2288,15 @@ export default function App() {
                   {/* Content overlay */}
                   <div className="relative z-10 h-full flex flex-col items-center justify-center p-12 text-white">
                     <div className="text-center space-y-6">
+                      <div className="text-7xl mb-6">👨‍🏫</div>
+                      
                       <div className="bg-white/20 backdrop-blur-md rounded-2xl px-8 py-4 inline-block border border-white/30">
-                        <p className="text-2xl font-bold">Join 500+ Expert Tutors</p>
+                        <p className="text-2xl font-bold">Share Your Knowledge</p>
                       </div>
                       
-                      <div className="flex items-center justify-center gap-8 mt-8">
-                        <div className="text-center">
-                          <p className="text-4xl font-bold">₹500+</p>
-                          <p className="text-sm opacity-90">Avg. hourly rate</p>
-                        </div>
-                        <div className="w-px h-12 bg-white/30"></div>
-                        <div className="text-center">
-                          <p className="text-4xl font-bold">1000+</p>
-                          <p className="text-sm opacity-90">Active students</p>
-                        </div>
-                      </div>
+                      <p className="text-lg opacity-90 max-w-sm mx-auto">
+                        Turn your expertise into income by teaching students worldwide
+                      </p>
                       
                       <div className="flex gap-2 justify-center mt-6">
                         <div className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center border border-white/40">
