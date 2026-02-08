@@ -83,7 +83,7 @@ export default function App() {
     try {
       const videoFilename = tutorFormData.videoFile ? tutorFormData.videoFile.name : 'No video uploaded';
       
-      await fetch('https://script.google.com/macros/s/AKfycbzaNyRBlNxcVop_CNs58Lbcutp8RmbXOfKuddurG-UN5oJf7RkkXksKbCAbBAu4X8hbRw/exec', {
+      await fetch('https://script.google.com/macros/s/AKfycbzgC3B5CLGB_rR4r2OzcWgPszBRqNaUfPAuxPukmXkEPOVeefe1hd6ejlZwQVWloVMg/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
