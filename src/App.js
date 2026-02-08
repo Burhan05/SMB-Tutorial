@@ -2083,63 +2083,154 @@ export default function App() {
       {/* Main Content */}
       <main className="relative z-10 flex items-center justify-center px-8" style={{minHeight: 'calc(100vh - 120px)'}}>
         <div className="max-w-4xl w-full">
-          {/* Hero Section */}
-          <div className="text-center mb-16">
-            <h2 className="text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Learn Anything,<br />
-              <span className="text-teal-600">Anytime</span>
-            </h2>
-            <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-              Connect with expert teachers for hourly sessions. Master any concept at your own pace, on your own schedule.
-            </p>
-            <button 
-              onClick={() => setCurrentPage('form')}
-              className="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-10 py-4 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl"
-            >
-              Find a Teacher →
-            </button>
+          {/* Hero Section - Enhanced with Images */}
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
+            {/* Left side - Content */}
+            <div>
+              <div className="inline-block bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                ⭐ Trusted by 10,000+ Students
+              </div>
+              
+              <h2 className="text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                Learn Anything,<br />
+                <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">Anytime</span>
+              </h2>
+              
+              <p className="text-xl text-gray-600 mb-8">
+                Connect with expert teachers for hourly sessions. Master any concept at your own pace, on your own schedule.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <button 
+                  onClick={() => setCurrentPage('form')}
+                  className="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                  Find a Teacher →
+                </button>
+                <button 
+                  onClick={() => setCurrentPage('teachers')}
+                  className="bg-white border-2 border-teal-600 text-teal-600 hover:bg-teal-50 font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-200"
+                >
+                  Browse Teachers
+                </button>
+              </div>
+              
+              {/* Stats */}
+              <div className="flex gap-8 pt-8 border-t border-gray-200">
+                <div>
+                  <p className="text-3xl font-bold text-gray-900">500+</p>
+                  <p className="text-sm text-gray-600">Expert Tutors</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-gray-900">50+</p>
+                  <p className="text-sm text-gray-600">Subjects</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-gray-900">4.9⭐</p>
+                  <p className="text-sm text-gray-600">Average Rating</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right side - Image Collage */}
+            <div className="relative">
+              {/* Main image */}
+              <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
+                <img 
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=600&fit=crop" 
+                  alt="Students learning together"
+                  className="w-full h-auto"
+                />
+                {/* Floating card overlay */}
+                <div className="absolute bottom-6 left-6 right-6 bg-white rounded-2xl p-4 shadow-xl">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white font-bold">
+                      A+
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-semibold text-gray-900">98% Success Rate</p>
+                      <p className="text-sm text-gray-600">Students achieve their goals</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Decorative elements */}
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-3xl opacity-20 -z-10"></div>
+              <div className="absolute -bottom-6 -left-6 w-40 h-40 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-3xl opacity-20 -z-10"></div>
+            </div>
           </div>
 
           {/* Features Grid */}
           <div className="grid md:grid-cols-3 gap-8 mt-20">
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:scale-105 transition-all duration-200">
+              <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 shadow-md">
                 <span className="text-3xl">📚</span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Any Subject</h3>
-              <p className="text-gray-600 text-sm">From math to music, find teachers for every topic you want to learn.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Any Subject</h3>
+              <p className="text-gray-600">From math to music, find teachers for every topic you want to learn.</p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:scale-105 transition-all duration-200">
+              <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 shadow-md">
                 <span className="text-3xl">⏰</span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Your Schedule</h3>
-              <p className="text-gray-600 text-sm">Book sessions that fit your time. Learn when it's convenient for you.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Your Schedule</h3>
+              <p className="text-gray-600">Book sessions that fit your time. Learn when it's convenient for you.</p>
             </div>
 
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-4">
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:scale-105 transition-all duration-200">
+              <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 shadow-md">
                 <span className="text-3xl">👨‍🏫</span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Expert Teachers</h3>
-              <p className="text-gray-600 text-sm">Learn from qualified educators who specialize in your topic.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Expert Teachers</h3>
+              <p className="text-gray-600">Learn from qualified educators who specialize in your topic.</p>
             </div>
           </div>
 
-          {/* Tutor Recruitment Section - Preply Style */}
+          {/* Tutor Recruitment Section - Preply Style with Images */}
           <div className="mt-32 mb-16">
             <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
               <div className="grid md:grid-cols-2 gap-0">
-                {/* Left side - Image/Visual */}
-                <div className="bg-gradient-to-br from-teal-500 to-cyan-600 p-12 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full -mr-32 -mt-32"></div>
-                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-white opacity-10 rounded-full -ml-24 -mb-24"></div>
-                  <div className="relative z-10 text-center">
-                    <div className="text-8xl mb-6">👨‍🏫</div>
-                    <div className="space-y-4">
-                      <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-xl px-6 py-3 inline-block">
-                        <p className="text-white font-semibold">Join 500+ Expert Tutors</p>
+                {/* Left side - Real Image */}
+                <div className="relative overflow-hidden h-96 md:h-auto">
+                  <img 
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=800&fit=crop" 
+                    alt="Happy tutor teaching students"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-teal-600/90 to-cyan-600/90"></div>
+                  
+                  {/* Content overlay */}
+                  <div className="relative z-10 h-full flex flex-col items-center justify-center p-12 text-white">
+                    <div className="text-center space-y-6">
+                      <div className="bg-white/20 backdrop-blur-md rounded-2xl px-8 py-4 inline-block border border-white/30">
+                        <p className="text-2xl font-bold">Join 500+ Expert Tutors</p>
+                      </div>
+                      
+                      <div className="flex items-center justify-center gap-8 mt-8">
+                        <div className="text-center">
+                          <p className="text-4xl font-bold">₹500+</p>
+                          <p className="text-sm opacity-90">Avg. hourly rate</p>
+                        </div>
+                        <div className="w-px h-12 bg-white/30"></div>
+                        <div className="text-center">
+                          <p className="text-4xl font-bold">1000+</p>
+                          <p className="text-sm opacity-90">Active students</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex gap-2 justify-center mt-6">
+                        <div className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center border border-white/40">
+                          <span className="text-2xl">📚</span>
+                        </div>
+                        <div className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center border border-white/40">
+                          <span className="text-2xl">💡</span>
+                        </div>
+                        <div className="w-12 h-12 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center border border-white/40">
+                          <span className="text-2xl">🎓</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2147,7 +2238,11 @@ export default function App() {
 
                 {/* Right side - Content */}
                 <div className="p-12">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  <div className="inline-block bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-sm font-semibold mb-4">
+                    🚀 Now Hiring
+                  </div>
+                  
+                  <h2 className="text-4xl font-bold text-gray-900 mb-4">
                     Become a tutor
                   </h2>
                   <p className="text-lg text-gray-600 mb-8">
@@ -2157,8 +2252,8 @@ export default function App() {
                   {/* Benefits List */}
                   <div className="space-y-4 mb-8">
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-teal-600 text-sm">✓</span>
+                      <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                        <span className="text-white text-lg">👥</span>
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">Find new students</h3>
@@ -2167,8 +2262,8 @@ export default function App() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-teal-600 text-sm">✓</span>
+                      <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                        <span className="text-white text-lg">💼</span>
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">Grow your business</h3>
@@ -2177,8 +2272,8 @@ export default function App() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-teal-600 text-sm">✓</span>
+                      <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                        <span className="text-white text-lg">💰</span>
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">Get paid securely</h3>
@@ -2189,15 +2284,15 @@ export default function App() {
 
                   <button
                     onClick={() => setCurrentPage('tutor-signup')}
-                    className="bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
+                    className="bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-bold px-8 py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 transform"
                   >
-                    Become a tutor
+                    Become a tutor →
                   </button>
 
                   <div className="mt-6">
                     <button 
                       onClick={() => alert('Learn more about how our platform works for tutors')}
-                      className="text-teal-600 hover:text-teal-700 font-medium text-sm"
+                      className="text-teal-600 hover:text-teal-700 font-medium text-sm underline"
                     >
                       How our platform works →
                     </button>
