@@ -16,7 +16,7 @@ export default function App() {
     teachingLevel: '',
     hourlyRate: '',
     hoursPerWeek: '',
-    videoFile: null
+    videoLink: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -81,8 +81,6 @@ export default function App() {
     setIsSubmitting(true);
 
     try {
-      const videoFilename = tutorFormData.videoFile ? tutorFormData.videoFile.name : 'No video uploaded';
-      
       await fetch('https://script.google.com/macros/s/AKfycbzgC3B5CLGB_rR4r2OzcWgPszBRqNaUfPAuxPukmXkEPOVeefe1hd6ejlZwQVWloVMg/exec', {
         method: 'POST',
         mode: 'no-cors',
@@ -100,7 +98,7 @@ export default function App() {
           teachingLevel: tutorFormData.teachingLevel,
           hourlyRate: tutorFormData.hourlyRate,
           hoursPerWeek: tutorFormData.hoursPerWeek,
-          videoFilename: videoFilename
+          videoLink: tutorFormData.videoLink
         })
       });
 
@@ -120,7 +118,7 @@ export default function App() {
         teachingLevel: '',
         hourlyRate: '',
         hoursPerWeek: '',
-        videoFile: null
+        videoLink: ''
       });
       
       setCurrentPage('home');
@@ -1707,47 +1705,60 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Demo Video Upload */}
+              {/* Demo Video Link */}
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Demo Video</h3>
                 <div className="space-y-3">
                   <label className="block text-sm font-semibold text-gray-700">
-                    Upload a Demo Video (Teaching a Concept) *
+                    Demo Video Link (YouTube or Google Drive) *
                   </label>
                   <p className="text-sm text-gray-500 mb-3">
-                    Record a 2-5 minute video explaining a concept from your subject. This helps students see your teaching style.
+                    Upload your 2-5 minute demo video to YouTube or Google Drive, then paste the link here. This helps students see your teaching style.
                   </p>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-teal-500 transition-colors">
-                    <input
-                      type="file"
-                      accept="video/*"
-                      required
-                      className="hidden"
-                      id="video-upload"
-                      onChange={(e) => setTutorFormData({...tutorFormData, videoFile: e.target.files[0]})}
-                    />
-                    <label 
-                      htmlFor="video-upload" 
-                      className="cursor-pointer flex flex-col items-center"
-                    >
-                      <div className="text-5xl mb-3">🎥</div>
-                      <span className="text-teal-600 font-semibold hover:text-teal-700">
-                        {tutorFormData.videoFile ? tutorFormData.videoFile.name : 'Click to upload video'}
-                      </span>
-                      <span className="text-sm text-gray-500 mt-2">
-                        MP4, MOV, or AVI (Max 100MB)
-                      </span>
-                    </label>
-                  </div>
+                  
+                  <input
+                    type="url"
+                    placeholder="https://www.youtube.com/watch?v=... or https://drive.google.com/file/d/..."
+                    required
+                    value={tutorFormData.videoLink}
+                    onChange={(e) => setTutorFormData({...tutorFormData, videoLink: e.target.value})}
+                    className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
+                  />
+                  
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <p className="text-sm text-blue-800">
-                      <strong>💡 Pro Tips:</strong>
+                    <p className="text-sm text-blue-800 mb-2">
+                      <strong>📹 How to Upload Your Demo Video:</strong>
                     </p>
-                    <ul className="text-sm text-blue-700 mt-2 space-y-1 ml-4">
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-sm font-semibold text-blue-900">YouTube (Recommended):</p>
+                        <ol className="text-sm text-blue-700 mt-1 ml-4 space-y-1">
+                          <li>1. Upload to YouTube (can be Unlisted)</li>
+                          <li>2. Click Share → Copy link</li>
+                          <li>3. Paste link above</li>
+                        </ol>
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-blue-900">Google Drive:</p>
+                        <ol className="text-sm text-blue-700 mt-1 ml-4 space-y-1">
+                          <li>1. Upload to Google Drive</li>
+                          <li>2. Right-click → Share → Anyone with link</li>
+                          <li>3. Copy link and paste above</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
+                    <p className="text-sm text-teal-800">
+                      <strong>💡 Demo Video Tips:</strong>
+                    </p>
+                    <ul className="text-sm text-teal-700 mt-2 space-y-1 ml-4">
                       <li>• Good lighting and clear audio</li>
                       <li>• Explain a concept step-by-step</li>
                       <li>• Use whiteboard or screen sharing</li>
                       <li>• Be enthusiastic and engaging</li>
+                      <li>• Keep it 2-5 minutes long</li>
                     </ul>
                   </div>
                 </div>
