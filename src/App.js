@@ -1299,85 +1299,125 @@ export default function App() {
   // Sign In Page
   if (currentPage === 'signin') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 flex items-center justify-center p-6">
-        <div className="max-w-md w-full">
-          {/* Back to Home */}
-          <div className="mb-6 text-center">
-            <button 
-              onClick={() => setCurrentPage('home')}
-              className="text-teal-600 hover:text-teal-700 font-medium inline-flex items-center gap-2"
-            >
-              ← Back to Home
-            </button>
+      <div className="min-h-screen bg-gray-50 flex">
+        {/* Left side - Image */}
+        <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&h=1200&fit=crop" 
+            alt="Students studying"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-teal-600/95 to-cyan-600/95"></div>
+          
+          <div className="relative z-10 flex flex-col justify-center p-16 text-white">
+            <h1 className="text-5xl font-bold mb-6">Welcome Back!</h1>
+            <p className="text-xl opacity-90 mb-8">
+              Continue your learning journey with expert tutors
+            </p>
+            
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="text-2xl">✓</span>
+                </div>
+                <p className="text-lg">Access your personalized dashboard</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="text-2xl">✓</span>
+                </div>
+                <p className="text-lg">Book sessions with your favorite tutors</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="text-2xl">✓</span>
+                </div>
+                <p className="text-lg">Track your learning progress</p>
+              </div>
+            </div>
           </div>
+        </div>
 
-          {/* Sign In Card */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-            {/* Logo and Title */}
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-white font-bold text-2xl">SMB</span>
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h2>
-              <p className="text-gray-600">Sign in to continue learning</p>
+        {/* Right side - Form */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center p-6">
+          <div className="max-w-md w-full">
+            {/* Back to Home */}
+            <div className="mb-6">
+              <button 
+                onClick={() => setCurrentPage('home')}
+                className="text-teal-600 hover:text-teal-700 font-medium inline-flex items-center gap-2"
+              >
+                ← Back to Home
+              </button>
             </div>
 
-            {/* Gmail Sign In Button */}
-            <button
-              onClick={() => alert('Gmail Sign In will be implemented with Google OAuth')}
-              className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold py-3 px-4 rounded-lg transition-all mb-6"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-              </svg>
-              Continue with Google
-            </button>
-
-            {/* Divider */}
-            <div className="relative mb-6">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-4 bg-white text-gray-500">Or sign in with email</span>
-              </div>
-            </div>
-
-            {/* Email Sign In Form */}
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
-                <input
-                  type="email"
-                  placeholder="your.email@example.com"
-                  className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
-                />
+            {/* Sign In Card */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+              {/* Logo and Title */}
+              <div className="text-center mb-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <span className="text-white font-bold text-2xl">SMB</span>
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Sign In</h2>
+                <p className="text-gray-600">Access your account</p>
               </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
-                <input
-                  type="password"
-                  placeholder="Enter your password"
-                  className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
-                />
-              </div>
-
-              <div className="flex items-center justify-between text-sm">
-                <label className="flex items-center">
-                  <input type="checkbox" className="mr-2" />
-                  <span className="text-gray-600">Remember me</span>
-                </label>
-                <button type="button" className="text-teal-600 hover:text-teal-700 font-medium">
-                  Forgot password?
-                </button>
-              </div>
-
+              {/* Gmail Sign In Button */}
               <button
-                type="button"
+                onClick={() => alert('Gmail Sign In will be implemented with Google OAuth')}
+                className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold py-3 px-4 rounded-lg transition-all mb-6 hover:shadow-md"
+              >
+                <svg className="w-5 h-5" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Continue with Google
+              </button>
+
+              {/* Divider */}
+              <div className="relative mb-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-4 bg-white text-gray-500">Or sign in with email</span>
+                </div>
+              </div>
+
+              {/* Email Sign In Form */}
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                  <input
+                    type="email"
+                    placeholder="your.email@example.com"
+                    className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+                  <input
+                    type="password"
+                    placeholder="Enter your password"
+                    className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
+                  />
+                </div>
+
+                <div className="flex items-center justify-between text-sm">
+                  <label className="flex items-center">
+                    <input type="checkbox" className="mr-2" />
+                    <span className="text-gray-600">Remember me</span>
+                  </label>
+                  <button type="button" className="text-teal-600 hover:text-teal-700 font-medium">
+                    Forgot password?
+                  </button>
+                </div>
+
+                <button
+                  type="button"
                 onClick={() => {
                   alert('Sign in successful! (Demo)');
                   setCurrentPage('home');
@@ -1409,30 +1449,70 @@ export default function App() {
   // Sign Up Page
   if (currentPage === 'signup') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 flex items-center justify-center p-6">
-        <div className="max-w-md w-full">
-          {/* Back to Sign In */}
-          <div className="mb-6 text-center">
-            <button 
-              onClick={() => setCurrentPage('signin')}
-              className="text-teal-600 hover:text-teal-700 font-medium inline-flex items-center gap-2"
-            >
-              ← Back to Sign In
-            </button>
-          </div>
-
-          {/* Sign Up Card */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-            {/* Logo and Title */}
-            <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                <span className="text-white font-bold text-2xl">SMB</span>
+      <div className="min-h-screen bg-gray-50 flex">
+        {/* Left side - Image */}
+        <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&h=1200&fit=crop" 
+            alt="Happy students learning"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/95 to-teal-600/95"></div>
+          
+          <div className="relative z-10 flex flex-col justify-center p-16 text-white">
+            <h1 className="text-5xl font-bold mb-6">Start Learning Today!</h1>
+            <p className="text-xl opacity-90 mb-8">
+              Join thousands of students achieving their goals with expert tutors
+            </p>
+            
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="text-2xl">🎯</span>
+                </div>
+                <p className="text-lg">Learn any subject from qualified experts</p>
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h2>
-              <p className="text-gray-600">Start your learning journey today</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="text-2xl">📅</span>
+                </div>
+                <p className="text-lg">Flexible scheduling that fits your life</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="text-2xl">💪</span>
+                </div>
+                <p className="text-lg">Achieve your learning goals faster</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right side - Form */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center p-6">
+          <div className="max-w-md w-full">
+            {/* Back to Sign In */}
+            <div className="mb-6">
+              <button 
+                onClick={() => setCurrentPage('signin')}
+                className="text-teal-600 hover:text-teal-700 font-medium inline-flex items-center gap-2"
+              >
+                ← Back to Sign In
+              </button>
             </div>
 
-            {/* Gmail Sign Up Button */}
+            {/* Sign Up Card */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+              {/* Logo and Title */}
+              <div className="text-center mb-8">
+                <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <span className="text-white font-bold text-2xl">SMB</span>
+                </div>
+                <h2 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h2>
+                <p className="text-gray-600">Start your learning journey</p>
+              </div>
+
+              {/* Gmail Sign Up Button */}
             <button
               onClick={() => alert('Gmail Sign Up will be implemented with Google OAuth')}
               className="w-full flex items-center justify-center gap-3 bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold py-3 px-4 rounded-lg transition-all mb-6"
@@ -2088,7 +2168,7 @@ export default function App() {
             {/* Left side - Content */}
             <div>
               <div className="inline-block bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                ⭐ Trusted by 10,000+ Students
+                🎓 Your Personal Learning Platform
               </div>
               
               <h2 className="text-6xl font-bold text-gray-900 mb-6 leading-tight">
@@ -2115,19 +2195,22 @@ export default function App() {
                 </button>
               </div>
               
-              {/* Stats */}
-              <div className="flex gap-8 pt-8 border-t border-gray-200">
-                <div>
-                  <p className="text-3xl font-bold text-gray-900">500+</p>
-                  <p className="text-sm text-gray-600">Expert Tutors</p>
+              {/* Benefits instead of stats */}
+              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-200">
+                <div className="text-center">
+                  <div className="text-3xl mb-2">📚</div>
+                  <p className="text-sm font-semibold text-gray-900">All Subjects</p>
+                  <p className="text-xs text-gray-600">Any topic</p>
                 </div>
-                <div>
-                  <p className="text-3xl font-bold text-gray-900">50+</p>
-                  <p className="text-sm text-gray-600">Subjects</p>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">⏰</div>
+                  <p className="text-sm font-semibold text-gray-900">Flexible</p>
+                  <p className="text-xs text-gray-600">Your schedule</p>
                 </div>
-                <div>
-                  <p className="text-3xl font-bold text-gray-900">4.9⭐</p>
-                  <p className="text-sm text-gray-600">Average Rating</p>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">💯</div>
+                  <p className="text-sm font-semibold text-gray-900">Quality</p>
+                  <p className="text-xs text-gray-600">Expert tutors</p>
                 </div>
               </div>
             </div>
@@ -2144,12 +2227,12 @@ export default function App() {
                 {/* Floating card overlay */}
                 <div className="absolute bottom-6 left-6 right-6 bg-white rounded-2xl p-4 shadow-xl">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white font-bold">
-                      A+
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center text-white text-2xl">
+                      ✓
                     </div>
                     <div className="flex-1">
-                      <p className="font-semibold text-gray-900">98% Success Rate</p>
-                      <p className="text-sm text-gray-600">Students achieve their goals</p>
+                      <p className="font-semibold text-gray-900">One-on-One Sessions</p>
+                      <p className="text-sm text-gray-600">Personalized attention, real results</p>
                     </div>
                   </div>
                 </div>
