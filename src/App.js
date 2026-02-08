@@ -753,12 +753,12 @@ export default function App() {
 
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">Preferred Schedule</label>
-                    <select className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none">
-                      <option value="">When would you like to start?</option>
-                      <option value="asap">As soon as possible</option>
-                      <option value="this-week">This week</option>
-                      <option value="next-week">Next week</option>
-                      <option value="flexible">Flexible</option>
+                    <select className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none text-gray-900 font-medium text-base bg-white">
+                      <option value="" className="text-gray-500">When would you like to start?</option>
+                      <option value="asap" className="text-gray-900">As soon as possible</option>
+                      <option value="this-week" className="text-gray-900">This week</option>
+                      <option value="next-week" className="text-gray-900">Next week</option>
+                      <option value="flexible" className="text-gray-900">Flexible</option>
                     </select>
                   </div>
 
@@ -981,11 +981,11 @@ export default function App() {
                   <select
                     value={formData.grade}
                     onChange={(e) => setFormData({...formData, grade: e.target.value})}
-                    className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
+                    className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none text-gray-900 font-medium text-base bg-white"
                   >
-                    <option value="">Select your grade</option>
+                    <option value="" className="text-gray-500">Select your grade</option>
                     {grades.map((grade) => (
-                      <option key={grade} value={grade}>{grade}</option>
+                      <option key={grade} value={grade} className="text-gray-900">{grade}</option>
                     ))}
                   </select>
                 </div>
@@ -1021,11 +1021,11 @@ export default function App() {
                   <select
                     value={formData.subject}
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                    className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
+                    className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none text-gray-900 font-medium text-base bg-white"
                   >
-                    <option value="">Select subject</option>
+                    <option value="" className="text-gray-500">Select subject</option>
                     {subjects[formData.field].map((sub) => (
-                      <option key={sub} value={sub}>{sub}</option>
+                      <option key={sub} value={sub} className="text-gray-900">{sub}</option>
                     ))}
                   </select>
                 </div>
@@ -1204,35 +1204,35 @@ export default function App() {
               {/* Level */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Your Current Level</label>
-                <select className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none">
-                  <option value="">Select your level</option>
-                  <option value="beginner">Beginner (Just starting)</option>
-                  <option value="intermediate">Intermediate (Some knowledge)</option>
-                  <option value="advanced">Advanced (Want to master)</option>
+                <select className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none text-gray-900 font-medium text-base bg-white">
+                  <option value="" className="text-gray-500">Select your level</option>
+                  <option value="beginner" className="text-gray-900">Beginner (Just starting)</option>
+                  <option value="intermediate" className="text-gray-900">Intermediate (Some knowledge)</option>
+                  <option value="advanced" className="text-gray-900">Advanced (Want to master)</option>
                 </select>
               </div>
 
               {/* Preferred Schedule */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Preferred Schedule</label>
-                <select className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none">
-                  <option value="">Select your availability</option>
-                  <option value="weekday-morning">Weekday Mornings</option>
-                  <option value="weekday-afternoon">Weekday Afternoons</option>
-                  <option value="weekday-evening">Weekday Evenings</option>
-                  <option value="weekend">Weekends</option>
-                  <option value="flexible">Flexible</option>
+                <select className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none text-gray-900 font-medium text-base bg-white">
+                  <option value="" className="text-gray-500">Select your availability</option>
+                  <option value="weekday-morning" className="text-gray-900">Weekday Mornings</option>
+                  <option value="weekday-afternoon" className="text-gray-900">Weekday Afternoons</option>
+                  <option value="weekday-evening" className="text-gray-900">Weekday Evenings</option>
+                  <option value="weekend" className="text-gray-900">Weekends</option>
+                  <option value="flexible" className="text-gray-900">Flexible</option>
                 </select>
               </div>
 
               {/* Budget Range */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">Budget Range (per hour)</label>
-                <select className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none">
-                  <option value="">Select your budget</option>
-                  <option value="300-500">₹300 - ₹500</option>
-                  <option value="500-700">₹500 - ₹700</option>
-                  <option value="700-1000">₹700 - ₹1000</option>
+                <select className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none text-gray-900 font-medium text-base bg-white">
+                  <option value="" className="text-gray-500">Select your budget</option>
+                  <option value="300-500" className="text-gray-900">₹300 - ₹500</option>
+                  <option value="500-700" className="text-gray-900">₹500 - ₹700</option>
+                  <option value="700-1000" className="text-gray-900">₹700 - ₹1000</option>
                   <option value="1000+">₹1000+</option>
                 </select>
               </div>
@@ -1749,12 +1749,12 @@ export default function App() {
                     <select 
                       value={tutorFormData.teachingLevel}
                       onChange={(e) => setTutorFormData({...tutorFormData, teachingLevel: e.target.value})}
-                      className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
+                      className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none text-gray-900 font-medium text-base bg-white"
                     >
-                      <option value="">Select level</option>
-                      <option value="school">School (6th-12th)</option>
-                      <option value="college">College/University</option>
-                      <option value="both">Both</option>
+                      <option value="" className="text-gray-500">Select level</option>
+                      <option value="school" className="text-gray-900">School (6th-12th)</option>
+                      <option value="college" className="text-gray-900">College/University</option>
+                      <option value="both" className="text-gray-900">Both</option>
                     </select>
                   </div>
                   <div>
@@ -1774,14 +1774,14 @@ export default function App() {
                       required
                       value={tutorFormData.hoursPerWeek}
                       onChange={(e) => setTutorFormData({...tutorFormData, hoursPerWeek: e.target.value})}
-                      className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none"
+                      className="w-full py-3 px-4 rounded-lg border-2 border-gray-200 focus:border-teal-600 focus:outline-none text-gray-900 font-medium text-base bg-white"
                     >
-                      <option value="">Select hours</option>
-                      <option value="5-10">5-10 hours/week</option>
-                      <option value="10-20">10-20 hours/week</option>
-                      <option value="20-30">20-30 hours/week</option>
-                      <option value="30-40">30-40 hours/week</option>
-                      <option value="40+">40+ hours/week (Full-time)</option>
+                      <option value="" className="text-gray-500">Select hours</option>
+                      <option value="5-10" className="text-gray-900">5-10 hours/week</option>
+                      <option value="10-20" className="text-gray-900">10-20 hours/week</option>
+                      <option value="20-30" className="text-gray-900">20-30 hours/week</option>
+                      <option value="30-40" className="text-gray-900">30-40 hours/week</option>
+                      <option value="40+" className="text-gray-900">40+ hours/week (Full-time)</option>
                     </select>
                   </div>
                 </div>
