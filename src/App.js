@@ -1418,27 +1418,28 @@ export default function App() {
 
                 <button
                   type="button"
-                onClick={() => {
-                  alert('Sign in successful! (Demo)');
-                  setCurrentPage('home');
-                }}
-                className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                Sign In
-              </button>
-            </form>
-
-            {/* Sign Up Link */}
-            <div className="mt-6 text-center">
-              <p className="text-gray-600">
-                Don't have an account?{' '}
-                <button 
-                  onClick={() => setCurrentPage('signup')}
-                  className="text-teal-600 hover:text-teal-700 font-semibold"
+                  onClick={() => {
+                    alert('Sign in successful! (Demo)');
+                    setCurrentPage('home');
+                  }}
+                  className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
                 >
-                  Sign Up
+                  Sign In
                 </button>
-              </p>
+              </form>
+
+              {/* Sign Up Link */}
+              <div className="mt-6 text-center">
+                <p className="text-gray-600">
+                  Don't have an account?{' '}
+                  <button 
+                    onClick={() => setCurrentPage('signup')}
+                    className="text-teal-600 hover:text-teal-700 font-semibold"
+                  >
+                    Sign Up
+                  </button>
+                </p>
+              </div>
             </div>
           </div>
         </div>
